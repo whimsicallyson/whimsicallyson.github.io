@@ -16,7 +16,7 @@ app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get('/scrape', function(request, response) {
+app.post('/scrape', function(request, response) {
   console.log('request', request);
   console.log('response', response);
   response.send();
