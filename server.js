@@ -19,6 +19,7 @@ app.get('/', function(request, response) {
 app.get('/scrape', function(request, response) {
   console.log('request', request);
   console.log('response', response);
+  response.send();
 });
 
 // listen for requests :)
