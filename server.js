@@ -17,8 +17,8 @@ app.get('/', function(request, response) {
 });
 
 app.post('/scrape', function(request, response) {
-  console.log('request', request);
-  console.log('response', response);
+  //console.log('request', request);
+  console.log('response', response.body);
   response.send();
 });
 
