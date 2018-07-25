@@ -36,12 +36,13 @@ app.get('/', function(request, response) {
 //css brokenurls from new RegExp('url(/web/.*?)', 'ig')
 fs.readFile('./views/index.html', function(err, data) {
   data = data.toString();
-  var htmlBrokenURLs = data.match(new RegExp('src="\/web.*?"', 'ig'))
+  var htmlBrokenURLs = data.match(new RegExp(/src="\/web.*?"/, 'ig'))
+  console.log(htmlBrokenURLs)
   for (var i = 0; i < htmlBrokenURLs.length; i++) {
-    promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+htmlBrokenURLs[i].slice(4,-1), dest})
+    promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+htmlBrokenURLs[i].slice(5,-1), dest})
     .then(({filename, image}) => {
-      var result = data.replace(/htmlBrokenURLs[i]/, dest + filename);
-      console.log(result);
+      var result = data.replace(htmlBrokenURLs[i], dest + filename); // this isn't quite right
+     // console.log(result);
       fs.writeFile('./views/index.html', result);
     }))
   }
@@ -49,13 +50,13 @@ fs.readFile('./views/index.html', function(err, data) {
 
 fs.readFile('./public/style.css', function(err, data) {
   data = data.toString();
-  var cssBrokenURLs = data.match(new RegExp('url\(\/web.*\)', 'ig'))
+  var cssBrokenURLs = data.match(new RegExp(/url\(\/web.*?\)/, 'ig')) // I think this ought to work?!
   // url(/web/20080831213231im_/http://www.fogcreek.com/FogBugz/i/screen/open-quote.gif)
   console.log(cssBrokenURLs)
   for (var i = 0; i < cssBrokenURLs.length; i++) {
     promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+cssBrokenURLs[i], dest})
     .then(({filename, image}) => {
-      var result = data.replace(/cssBrokenURLs[i]/, dest + filename);
+      var result = data.replace(cssBrokenURLs[i], dest + filename);
       console.log(result);
       fs.writeFile('./public/style.css', result);
     }))
