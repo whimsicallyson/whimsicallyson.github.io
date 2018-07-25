@@ -5,6 +5,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var imageDownloader = require('image-downloader');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -22,8 +23,19 @@ app.get('/', function(request, response) {
 
 
 // for each node restart
-// 1. get index.html and styl
-// 2. 
+// 1. get index.html and style.css
+// 2. parse code for broken image links
+// 3. for each image link, download
+/*
+  var dest = './public/images';
+  imageDownloader.image({ url: 'some url.png', dest})
+    .then(({filename, image}) => {
+    
+    
+
+*/
+// 4. return index.html and style.css
+
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function() {
