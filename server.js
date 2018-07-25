@@ -6,6 +6,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var imageDownloader = require('image-downloader');
+var fs = require('fs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -27,15 +28,27 @@ app.get('/', function(request, response) {
 // 2. parse code for broken image links
 // 3. for each image link, download
 /*
+  
+  var promiseArray = [];
+
+  // brokenURL, hotlinkURL ('https://web.archive.org/' + brokenURL)
   var dest = './public/images';
-  imageDownloader.image({ url: 'some url.png', dest})
-    .then(({filename, image}) => {
-    
-    
+  
+  // iterated through index.html and then style.css
+  // for each brokenURL...
+    promiseArray.push( imageDownloader.image({ url: hotlinkURL, dest})
+      .then(({filename, image}) => {
+        // replace brokenURL in index.html or style.css with glitchURL ('/images/' + filename)
+      });
+    )
+  
+  // when all the promises in that for/each are done
+  Promise.all( promiseArray )
+    .then( () => {
+      // rewrite index.html and style.css
+    });
 
 */
-// 4. return index.html and style.css
-
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function() {
