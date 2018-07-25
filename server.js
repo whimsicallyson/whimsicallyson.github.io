@@ -49,15 +49,16 @@ fs.readFile('./views/index.html', function(err, data) {
 
 fs.readFile('./public/style.css', function(err, data) {
   data = data.toString();
-  var cssBrokenURLs = data.match(new RegExp('url(/web/.*)', 'ig'))
-  // url(/web/20080831213231im_/http://www.fogcreek.com/FogBugz/i/screen/open-quote.gif) 
+  var cssBrokenURLs = data.match(new RegExp('url\(\/web.*\)', 'ig'))
+  // url(/web/20080831213231im_/http://www.fogcreek.com/FogBugz/i/screen/open-quote.gif)
+  console.log(cssBrokenURLs)
   for (var i = 0; i < cssBrokenURLs.length; i++) {
-    promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+cssBrokenURLs[i], dest}))
+    promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+cssBrokenURLs[i], dest})
     .then(({filename, image}) => {
       var result = data.replace(/cssBrokenURLs[i]/, dest + filename);
       console.log(result);
       fs.writeFile('./public/style.css', result);
-    })
+    }))
   }
 });
 /*
