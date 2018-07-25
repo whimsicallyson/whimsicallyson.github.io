@@ -27,18 +27,34 @@ app.get('/', function(request, response) {
 // 1. get index.html and style.css
 // 2. parse code for broken image links
 // 3. for each image link, download
-/*
+
   
   var promiseArray = [];
-
-html brokenurls from new RegExp('src="\/web.*?"', 'ig')
-css brokenurls from new RegExp('url(/web/.*?)', 'ig')
-fs.readFile('./views/index.html' function(err, data) {
-  
-})
-
-// brokenURL, hotlinkURL ('https://web.archive.org/' + brokenURL)
   var dest = './public/images';
+
+//html brokenurls from new RegExp('src="\/web.*?"', 'ig')
+//css brokenurls from new RegExp('url(/web/.*?)', 'ig')
+fs.readFile('./views/index.html', function(err, data) {
+  var htmlBrokenURLs = data.match(new RegExp('src="\/web.*?"', 'ig'))
+  for (var i = 0; i < htmlBrokenURLs.length; i++) {
+    promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+htmlBrokenURLs[i], dest}))
+    .then(({filename, image}) => {
+      data.replace(/htmlBrokenURLs[i]/, dest + filename);
+    })
+  }
+});
+
+fs.readFile('./public/style.css', function(err, data) {
+  var cssBrokenURLs = data.match(new RegExp('url(/web/.*?)', 'ig'))
+  for (var i = 0; i < cssBrokenURLs.length; i++) {
+    promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+cssBrokenURLs[i], dest}))
+    .then(({filename, image}) => {
+      data.replace(/cssBrokenURLs[i]/, dest + filename);
+    })
+  }
+});
+/*
+// brokenURL, hotlinkURL ('https://web.archive.org/' + brokenURL)
   
   // iterated through index.html and then style.css
   // for each brokenURL...
