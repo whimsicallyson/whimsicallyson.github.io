@@ -11,7 +11,7 @@ My First (and/or really old) Website!
 
 1. update names & descriptions of this and importer app
 2. get directions in here and on importer app
-
+3. see what happens when image limits are hit and warn users of those errors in the directions
 
 ### user experience
 
@@ -26,6 +26,7 @@ My First (and/or really old) Website!
   
   
   * src="/web/1234/example.png"
-  * src="https://web.archive.org/web/1234
+  * wget https://web.archive.org/web/1234/example.png (into public/images)
+  * src="/images/example.png"
 
 \ ゜o゜)ノ
