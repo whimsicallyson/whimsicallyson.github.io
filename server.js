@@ -32,17 +32,14 @@ app.get('/', function(request, response) {
   var promiseArray = [];
   var dest = './public/images';
 
-//html brokenurls from new RegExp('src="\/web.*?"', 'ig')
-//css brokenurls from new RegExp('url(/web/.*?)', 'ig')
 fs.readFile('./views/index.html', function(err, data) {
   data = data.toString();
   var htmlBrokenURLs = data.match(new RegExp(/src="\/web.*?"/, 'ig'))
-  console.log(htmlBrokenURLs)
   for (var i = 0; i < htmlBrokenURLs.length; i++) {
     promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+htmlBrokenURLs[i].slice(5,-1), dest})
     .then(({filename, image}) => {
-      var result = data.replace(htmlBrokenURLs[i], dest + filename); // this isn't quite right
-     // console.log(result);
+      var result = data.replace(htmlBrokenURLs[i], filename); // this isn't quite right
+      console.log(filename);
       fs.writeFile('./views/index.html', result);
     }))
   }
@@ -50,36 +47,24 @@ fs.readFile('./views/index.html', function(err, data) {
 
 fs.readFile('./public/style.css', function(err, data) {
   data = data.toString();
-  var cssBrokenURLs = data.match(new RegExp(/url\(\/web.*?\)/, 'ig')) // I think this ought to work?!
-  // url(/web/20080831213231im_/http://www.fogcreek.com/FogBugz/i/screen/open-quote.gif)
-  console.log(cssBrokenURLs)
+  var cssBrokenURLs = data.match(new RegExp(/url\(\/web.*?\)/, 'ig')) 
   for (var i = 0; i < cssBrokenURLs.length; i++) {
-    promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+cssBrokenURLs[i], dest})
+    promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+cssBrokenURLs[i].slice(4,-1), dest})
     .then(({filename, image}) => {
-      var result = data.replace(cssBrokenURLs[i], dest + filename);
-      console.log(result);
+      var result = data.replace(cssBrokenURLs[i], filename);
+      //console.log(result);
       fs.writeFile('./public/style.css', result);
     }))
   }
 });
-/*
-// brokenURL, hotlinkURL ('https://web.archive.org/' + brokenURL)
-  
-  // iterated through index.html and then style.css
-  // for each brokenURL...
-    promiseArray.push( imageDownloader.image({ url: hotlinkURL, dest})
-      .then(({filename, image}) => {
-        // replace brokenURL in index.html or style.css with glitchURL ('/images/' + filename)
-      });
-    )
-  
+
+ // haven't touched this part yet 
   // when all the promises in that for/each are done
   Promise.all( promiseArray )
     .then( () => {
       // rewrite index.html and style.css
     });
 
-*/
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function() {
