@@ -31,7 +31,10 @@ app.get('/', function(request, response) {
   
   var promiseArray = [];
 
-  // brokenURL, hotlinkURL ('https://web.archive.org/' + brokenURL)
+html brokenurls from new RegExp('src="\/web.*?"', 'ig')
+css brokenurls from new RegExp('url(/web/.*?)', 'ig')
+
+// brokenURL, hotlinkURL ('https://web.archive.org/' + brokenURL)
   var dest = './public/images';
   
   // iterated through index.html and then style.css
