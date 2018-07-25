@@ -7,4 +7,10 @@ My First (and/or really old) Website!
 
 
 
+### todo
+
+1. update names & descriptions of this and importer app
+2. get directions in here and on importer app
+
+
 \ ゜o゜)ノ
