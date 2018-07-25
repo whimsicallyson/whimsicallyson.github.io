@@ -35,21 +35,28 @@ app.get('/', function(request, response) {
 //html brokenurls from new RegExp('src="\/web.*?"', 'ig')
 //css brokenurls from new RegExp('url(/web/.*?)', 'ig')
 fs.readFile('./views/index.html', function(err, data) {
+  data = data.toString();
   var htmlBrokenURLs = data.match(new RegExp('src="\/web.*?"', 'ig'))
   for (var i = 0; i < htmlBrokenURLs.length; i++) {
-    promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+htmlBrokenURLs[i], dest}))
+    promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+htmlBrokenURLs[i].slice(4,-1), dest})
     .then(({filename, image}) => {
-      data.replace(/htmlBrokenURLs[i]/, dest + filename);
-    })
+      var result = data.replace(/htmlBrokenURLs[i]/, dest + filename);
+      console.log(result);
+      fs.writeFile('./views/index.html', result);
+    }))
   }
 });
 
 fs.readFile('./public/style.css', function(err, data) {
-  var cssBrokenURLs = data.match(new RegExp('url(/web/.*?)', 'ig'))
+  data = data.toString();
+  var cssBrokenURLs = data.match(new RegExp('url(/web/.*)', 'ig'))
+  // url(/web/20080831213231im_/http://www.fogcreek.com/FogBugz/i/screen/open-quote.gif) 
   for (var i = 0; i < cssBrokenURLs.length; i++) {
     promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+cssBrokenURLs[i], dest}))
     .then(({filename, image}) => {
-      data.replace(/cssBrokenURLs[i]/, dest + filename);
+      var result = data.replace(/cssBrokenURLs[i]/, dest + filename);
+      console.log(result);
+      fs.writeFile('./public/style.css', result);
     })
   }
 });
