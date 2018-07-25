@@ -33,6 +33,9 @@ app.get('/', function(request, response) {
 
 html brokenurls from new RegExp('src="\/web.*?"', 'ig')
 css brokenurls from new RegExp('url(/web/.*?)', 'ig')
+fs.readFile('./views/index.html' function(err, data) {
+  
+})
 
 // brokenURL, hotlinkURL ('https://web.archive.org/' + brokenURL)
   var dest = './public/images';
