@@ -35,28 +35,28 @@ app.get('/', function(request, response) {
   var newCSS = '';
 
   fs.readFile('./example.html', function(err, data) {
-    var originalHTML = data;
-    originalHTML = data.toString();
-    var htmlBrokenURLs = originalHTML.match(new RegExp(/src="\/web.*?"/, 'ig'))
+    var indexHTML = data.toString();
+    var htmlBrokenURLs = indexHTML.match(new RegExp(/src="\/web.*?"/, 'ig'));
+    
     console.log(htmlBrokenURLs);
+    
     if (htmlBrokenURLs !== null) {
       for (var i = 0; i < htmlBrokenURLs.length; i++) {
         var justURL = htmlBrokenURLs[i].slice(5,-1); // slice removes src=" and "
         promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
         .then(({filename, image}) => {
-          originalHTML = originalHTML.replace(justURL, (match) => {
-            console.log('match', match);
-            return filename;
-          });
-          // fs.writeFile('./views/index.html', data); // doing this doesn't seem to actually hit every url
+          indexHTML = indexHTML.replace(justURL, filename);
         }))
       }
-      newHTML = data;
-       // when all the promises in that for/each are done
+      console.log(newHTML);
+      // when all the promises in that for/each are done
       Promise.all( promiseArray )
         .then( () => {
+          newHTML = indexHTML;
           console.log('promise all complete', promiseArray);
-       // fs.writeFile('./views/index.html', newHTML); doing this gives me empty files
+          fs.writeFile('./views/index.html', newHTML, (err) => {
+            console.log('html file written. error? ', err); 
+          }); 
       //  fs.writeFile('./public/style.css', newCSS);
 
     });
