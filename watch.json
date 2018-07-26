@@ -5,13 +5,21 @@
       "^\\.env$"
     ]
   },
-  "restart": {
+  "stringreplace": {
     "exclude": [
       "^public/images/"
     ],
     "include": [
       "\\.html$",
-      "\\.css$",
+      "\\.css$"
+    ]
+  },
+  "restart": {
+    "exclude": [
+      "^public/",
+      "^views/"
+    ],
+    "include": [
       "\\.js$",
       "\\.json$"
     ]

@@ -34,16 +34,17 @@ app.get('/', function(request, response) {
   var newHTML = '';
   var newCSS = '';
 
-  fs.readFile('./views/index.html', function(err, data) {
+  fs.readFile('./example.html', function(err, data) {
     data = data.toString();
     var htmlBrokenURLs = data.match(new RegExp(/src="\/web.*?"/, 'ig'))
-    if (htmlBrokenURLs != null) {
+    console.log(htmlBrokenURLs);
+    if (htmlBrokenURLs !== null) {
       for (var i = 0; i < htmlBrokenURLs.length; i++) {
         var justURL = htmlBrokenURLs[i].slice(5,-1); // slice removes src=" and "
         promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
         .then(({filename, image}) => {
           data = data.replace(justURL, filename);
-          fs.writeFile('./views/index.html', data); // doing this doesn't seem to actually hit every url
+          // fs.writeFile('./views/index.html', data); // doing this doesn't seem to actually hit every url
         }))
       }
       newHTML = data;
@@ -53,13 +54,13 @@ app.get('/', function(request, response) {
   fs.readFile('./public/style.css', function(err, data) {
     data = data.toString();
     var cssBrokenURLs = data.match(new RegExp(/url\(\/web.*?\)/, 'ig')) 
-    if (cssBrokenURLs != null) {
+    if (cssBrokenURLs !== null) {
       for (var i = 0; i < cssBrokenURLs.length; i++) {
         var justURL = cssBrokenURLs[i].slice(4,-1); // slice removes url( and )
         promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
         .then(({filename, image}) => {
           data = data.replace(justURL, filename);
-          fs.writeFile('./public/style.css', data);
+          // fs.writeFile('./public/style.css', data);
         }))
       }
       newCSS = data;
