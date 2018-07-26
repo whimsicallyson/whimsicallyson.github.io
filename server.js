@@ -43,17 +43,20 @@ app.get('/', function(request, response) {
     if (htmlBrokenURLs !== null) {
       for (var i = 0; i < htmlBrokenURLs.length; i++) {
         var justURL = htmlBrokenURLs[i].slice(5,-1); // slice removes src=" and "
+        // get filename = (example.png) - split '/' last token, add /im
+        // indexHTML = indexHTML.replace(justURL, filename);
+
         promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
         .then(({filename, image}) => {
-          indexHTML = indexHTML.replace(justURL, filename);
+          console.log('downloaded:', filename);
         }))
       }
-      console.log(newHTML);
+
       // when all the promises in that for/each are done
       Promise.all( promiseArray )
         .then( () => {
           newHTML = indexHTML;
-          console.log('promise all complete', promiseArray);
+          console.log('promise all complete', promiseArray, newHTML);
           fs.writeFile('./views/index.html', newHTML, (err) => {
             console.log('html file written. error? ', err); 
           }); 
