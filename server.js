@@ -46,6 +46,7 @@ app.get('/', function(request, response) {
           fs.writeFile('./views/index.html', data);
         }))
       }
+      newHTML = data;
     }
   });
 
@@ -61,14 +62,14 @@ app.get('/', function(request, response) {
           fs.writeFile('./public/style.css', data);
         }))
       }
-
+      newCSS = data;
     }
   });
 
   // when all the promises in that for/each are done
   Promise.all( promiseArray )
     .then( () => {
-  //  fs.writeFile('./views/index.html', newHTML);
+   // fs.writeFile('./views/index.html', newHTML); doing this gives me empty files
   //  fs.writeFile('./public/style.css', newCSS);
 
     });

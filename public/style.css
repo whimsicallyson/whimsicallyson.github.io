@@ -236,16 +236,16 @@ blockquote.quote { margin: 0 0 1.2em; background: transparent url(/web/200808312
 .wrap1
 {
 	float:left;
-	background:url(public/images/shadow.gif) right bottom no-repeat;
+	background:url(/web/20080831213231im_/http://www.fogcreek.com/images/shadow.gif) right bottom no-repeat;
 }
 .wrap2
 {
-	background:url(public/images/shadow.gif) left bottom no-repeat;
+	background:url(/web/20080831213231im_/http://www.fogcreek.com/images/corner_bl.gif) left bottom no-repeat;
 }
 .wrap3
 {
 	padding:0 8px 8px 0;
-	background:url(public/images/open-quote.gif) right top no-repeat;
+	background:url(public/images/corner_tr.gif) right top no-repeat;
 }
 .wrap3 img
 {
@@ -253,9 +253,9 @@ blockquote.quote { margin: 0 0 1.2em; background: transparent url(/web/200808312
 	border:1px solid #ccc;
 	border-color:#efefef #ccc #ccc #efefef;
 }
-.wrap1 {background:url(public/images/shadow.gif) right bottom no-repeat;}
-.wrap2 {background:url(public/images/corner_bl.gif) -1px 100% no-repeat;}
-.wrap3 {padding:0 6px 6px 0; background:url(public/images/corner_tr.gif) 100% -1px no-repeat;}
+.wrap1 {background:url(/web/20080831213231im_/http://www.fogcreek.com/images/shadow.gif) right bottom no-repeat;}
+.wrap2 {background:url(/web/20080831213231im_/http://www.fogcreek.com/images/corner_bl.gif) -1px 100% no-repeat;}
+.wrap3 {padding:0 6px 6px 0; background:url(public/images/shadow.gif) 100% -1px no-repeat;}
 
 
 /*
