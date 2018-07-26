@@ -43,7 +43,7 @@ app.get('/', function(request, response) {
         promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
         .then(({filename, image}) => {
           data = data.replace(justURL, filename);
-          fs.writeFile('./views/index.html', data);
+          fs.writeFile('./views/index.html', data); // doing this doesn't seem to actually hit every url
         }))
       }
       newHTML = data;
