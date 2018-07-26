@@ -35,7 +35,6 @@ app.get('/', function(request, response) {
   fs.readFile('./views/index.html', function(err, data) {
     var indexHTML = data.toString();
     var htmlBrokenURLs = indexHTML.match(new RegExp(/src="\/web.*?"/, 'ig'));
-    // if there are inline styles in the HTML file, we're not scraping them!
     
     if (htmlBrokenURLs !== null) {
       for (var i = 0; i < htmlBrokenURLs.length; i++) {
@@ -52,10 +51,10 @@ app.get('/', function(request, response) {
           fs.writeFile('./views/index.html', newHTML, (err) => {
             console.log('html file written. error? ', err); 
           }); 
-    });
+      });
     }
   });
-
+ 
 
   fs.readFile('./public/style.css', function(err, data) {
     var indexCSS = data.toString();
@@ -74,7 +73,7 @@ app.get('/', function(request, response) {
           fs.writeFile('./public/style.css', newCSS, (err) => {
             console.log('css file written. error? ', err); 
           }); 
-    });
+      });
     }
   });
 
