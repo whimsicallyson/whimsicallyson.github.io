@@ -31,6 +31,8 @@ app.get('/', function(request, response) {
   
   var promiseArray = [];
   var dest = './public/images';
+  var newHTML = '';
+  var newCSS = '';
 
   fs.readFile('./views/index.html', function(err, data) {
     data = data.toString();
@@ -41,9 +43,11 @@ app.get('/', function(request, response) {
         promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
         .then(({filename, image}) => {
           data = data.replace(justURL, filename);
-          fs.writeFile('/views/index.html', data);
+          console.log(htmlBrokenURLs.length);
+          console.log('html ', i);
         }))
       }
+      newHTML = data;
     }
   });
 
@@ -56,16 +60,18 @@ app.get('/', function(request, response) {
         promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
         .then(({filename, image}) => {
           data = data.replace(justURL, filename);
-          fs.writeFile('./public/style.css', data);
+          console.log('css ', i);
         }))
       }
+      newCSS = data;
     }
   });
 
- // haven't touched this part yet 
   // when all the promises in that for/each are done
   Promise.all( promiseArray )
     .then( () => {
+    fs.writeFile('./views/index.html', newHTML);
+    fs.writeFile('./public/style.css', newCSS);
       // rewrite index.html and style.css
     });
 
