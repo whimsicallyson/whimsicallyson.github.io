@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
-<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app29.us.archive.org';v.server_ms=495;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/static/js/wbhack.js?v=1531952154.0" charset="utf-8"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app17.us.archive.org';v.server_ms=392;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/static/js/wbhack.js?v=1531952154.0" charset="utf-8"></script>
 
 <script type="text/javascript">
 __wbhack.init('https://web.archive.org/web');
@@ -61,7 +61,7 @@ __wbhack.init('https://web.archive.org/web');
 </html>
 <!--
      FILE ARCHIVED ON 07:34:57 Sep 01, 2008 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 18:03:56 Jul 26, 2018.
+     INTERNET ARCHIVE ON 18:22:14 Jul 26, 2018.
      JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
 
      ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
@@ -69,14 +69,14 @@ __wbhack.init('https://web.archive.org/web');
 -->
 <!--
 playback timings (ms):
-  LoadShardBlock: 75.289 (3)
-  esindex: 0.006
-  captures_list: 93.561
-  CDXLines.iter: 13.324 (3)
-  PetaboxLoader3.datanode: 112.616 (4)
-  exclusion.robots: 0.177
-  exclusion.robots.policy: 0.167
-  RedisCDXSource: 1.592
-  PetaboxLoader3.resolve: 340.073
-  load_resource: 381.792
+  LoadShardBlock: 47.466 (3)
+  esindex: 0.01
+  captures_list: 61.989
+  CDXLines.iter: 10.208 (3)
+  PetaboxLoader3.datanode: 62.657 (4)
+  exclusion.robots: 0.179
+  exclusion.robots.policy: 0.168
+  RedisCDXSource: 1.395
+  PetaboxLoader3.resolve: 267.004
+  load_resource: 315.52
 -->

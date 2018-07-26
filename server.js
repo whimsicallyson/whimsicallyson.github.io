@@ -33,7 +33,7 @@ app.get('/', function(request, response) {
   var dest = './public/images';
   var newCSS = '';
 
-  fs.readFile('./example.html', function(err, data) {
+  fs.readFile('./views/index.html', function(err, data) {
     var indexHTML = data.toString();
     var htmlBrokenURLs = indexHTML.match(new RegExp(/src="\/web.*?"/, 'ig'));
     
@@ -64,7 +64,7 @@ app.get('/', function(request, response) {
   });
 
 
-  fs.readFile('./example.css', function(err, data) {
+  fs.readFile('./public/style.css', function(err, data) {
     var indexCSS = data.toString();
     var cssBrokenURLs = indexCSS.match(new RegExp(/url\(\/web.*?\)/, 'ig')) 
     
@@ -89,7 +89,6 @@ app.get('/', function(request, response) {
     });
     }
   });
-
 
  
 
