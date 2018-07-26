@@ -493,7 +493,7 @@ input[type=checkbox]:checked ~ .nav-right {
   color: #fff;
   display: block;
   opacity: 1;
-  background: url(/images/map_pin.svg) no-repeat;
+  background: url(/web/20170824063208im_/http://www.fogcreek.com/images/fogcreek/map_pin.svg) no-repeat;
   background-size: 22px 22px;
   background-position: -3px 0px;
   padding-left: 20px;
@@ -777,7 +777,7 @@ input[type=submit] {
   border-radius: 3px;
 }
 #knowledge-search-input.loading {
-  background-image: url(/images/ajax-loader.gif);
+  background-image: url(/web/20170824063208im_/http://www.fogcreek.com/images/ajax-loader.gif);
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: 98%, 50%;
@@ -1112,7 +1112,7 @@ em {
   fill: #AD59E1;
 }
 .list_circlecheckmark li {
-  background: url(/images/circle-checkmark.svg) no-repeat;
+  background: url(/web/20170824063208im_/http://www.fogcreek.com/images/fogcreek/circle-checkmark.svg) no-repeat;
   background-size: 20px 20px;
   background-position: top left;
   padding-left: 30px;
@@ -1392,7 +1392,7 @@ em {
   color: #fff;
   display: block;
   opacity: .85;
-  background: url(/images/map_pin.svg) no-repeat;
+  background: url(/web/20170824063208im_/http://www.fogcreek.com/images/fogcreek/map_pin.svg) no-repeat;
   background-size: 16px 16px;
   background-position: -3px 3px;
   padding-left: 14px;
@@ -1408,7 +1408,7 @@ em {
   font-size: 100%;
   display: inline-block;
   opacity: .75;
-  background: url(/images/map_pin-alt.svg) no-repeat;
+  background: url(/web/20170824063208im_/http://www.fogcreek.com/images/fogcreek/map_pin-alt.svg) no-repeat;
   background-size: 22px 22px;
   background-position: -3px 0px;
   padding-left: 17px;

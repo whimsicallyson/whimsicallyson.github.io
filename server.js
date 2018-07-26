@@ -36,25 +36,19 @@ app.get('/', function(request, response) {
     var indexHTML = data.toString();
     var htmlBrokenURLs = indexHTML.match(new RegExp(/src="\/web.*?"/, 'ig'));
     // if there are inline styles in the HTML file, we're not scraping them!
-    console.log(htmlBrokenURLs);
     
     if (htmlBrokenURLs !== null) {
       for (var i = 0; i < htmlBrokenURLs.length; i++) {
         var justURL = htmlBrokenURLs[i].slice(5,-1); // slice removes src=" and "
         var filename = '/images/' + justURL.split('/').pop();
         indexHTML = indexHTML.replace(justURL, filename);
-
-        promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
-        .then(({filename, image}) => {
-          console.log('downloaded:', filename);
-        }))
+        promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest}))
       }
 
       // when all the promises in that for/each are done
       Promise.all( promiseArray )
         .then( () => {
           var newHTML = indexHTML;
-          console.log('promise all complete', promiseArray);
           fs.writeFile('./views/index.html', newHTML, (err) => {
             console.log('html file written. error? ', err); 
           }); 
@@ -72,24 +66,17 @@ app.get('/', function(request, response) {
         var justURL = cssBrokenURLs[i].slice(4,-1); // slice removes url( and )
         var filename = '/images/' + justURL.split('/').pop();
         indexCSS = indexCSS.replace(justURL, filename);
-        
-        promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
-        .then(({filename, image}) => {
-          console.log('downloaded: ', filename);
-        }))
+        promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest}))
       }
       Promise.all( promiseArray )
         .then( () => {
           var newCSS = indexCSS;
-          console.log('promise all complete', promiseArray);
           fs.writeFile('./public/style.css', newCSS, (err) => {
             console.log('css file written. error? ', err); 
           }); 
     });
     }
   });
-
- 
 
 
 // listen for requests :)

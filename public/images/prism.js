@@ -7,7 +7,7 @@ Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(as|async|
 
 /*
      FILE ARCHIVED ON 06:32:04 Aug 24, 2017 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 19:15:59 Jul 26, 2018.
+     INTERNET ARCHIVE ON 19:48:32 Jul 26, 2018.
      JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
 
      ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
@@ -15,14 +15,14 @@ Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(as|async|
 */
 /*
 playback timings (ms):
-  LoadShardBlock: 88.58 (3)
-  esindex: 0.008
-  captures_list: 104.514
-  CDXLines.iter: 10.514 (3)
-  PetaboxLoader3.datanode: 29.43 (4)
-  exclusion.robots: 0.14
-  exclusion.robots.policy: 0.129
-  RedisCDXSource: 1.691
-  PetaboxLoader3.resolve: 140.103 (2)
-  load_resource: 93.219
+  LoadShardBlock: 161.834 (3)
+  esindex: 0.005
+  captures_list: 183.887
+  CDXLines.iter: 14.425 (3)
+  PetaboxLoader3.datanode: 164.45 (4)
+  exclusion.robots: 0.169
+  exclusion.robots.policy: 0.157
+  RedisCDXSource: 1.605
+  PetaboxLoader3.resolve: 124.519
+  load_resource: 136.204
 */
