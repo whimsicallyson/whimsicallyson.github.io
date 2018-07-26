@@ -43,11 +43,9 @@ app.get('/', function(request, response) {
         promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
         .then(({filename, image}) => {
           data = data.replace(justURL, filename);
-          console.log(htmlBrokenURLs.length);
-          console.log('html ', i);
+          fs.writeFile('./views/index.html', data);
         }))
       }
-      newHTML = data;
     }
   });
 
@@ -60,19 +58,19 @@ app.get('/', function(request, response) {
         promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
         .then(({filename, image}) => {
           data = data.replace(justURL, filename);
-          console.log('css ', i);
+          fs.writeFile('./public/style.css', data);
         }))
       }
-      newCSS = data;
+
     }
   });
 
   // when all the promises in that for/each are done
   Promise.all( promiseArray )
     .then( () => {
-    fs.writeFile('./views/index.html', newHTML);
-    fs.writeFile('./public/style.css', newCSS);
-      // rewrite index.html and style.css
+  //  fs.writeFile('./views/index.html', newHTML);
+  //  fs.writeFile('./public/style.css', newCSS);
+
     });
 
 
