@@ -36,6 +36,7 @@ fs.readFile('./views/index.html', function(err, data) {
   data = data.toString();
   var htmlBrokenURLs = data.match(new RegExp(/src="\/web.*?"/, 'ig'))
   for (var i = 0; i < htmlBrokenURLs.length; i++) {
+    var justURL = htmlBrokenURLs[i].slice(5,-1); // slice removes sr
     promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+htmlBrokenURLs[i].slice(5,-1), dest})
     .then(({filename, image}) => {
       var result = data.replace(htmlBrokenURLs[i], filename); // this isn't quite right
