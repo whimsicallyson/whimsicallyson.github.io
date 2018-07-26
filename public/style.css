@@ -3,7 +3,7 @@
  *
  * simple.css - css for extremely simple fogcreek.com home page
  *
- * */ 
+ * */
 
 html>/**/body
 {
@@ -218,7 +218,7 @@ div#emailUs table
 }
 
 
-blockquote.quote { margin: 0 0 1.2em; background: transparent url(public/images/open-quote.gif) no-repeat 0 0; padding: 0 0 0 50px; }
+blockquote.quote { margin: 0 0 1.2em; background: transparent url(/images/open-quote.gif) no-repeat 0 0; padding: 0 0 0 50px; }
 	.quote * { font-style: italic; color: #455768; line-height: 14pt; }
 	.quote cite:before { content: "\2014\2002"; }
 
@@ -236,16 +236,16 @@ blockquote.quote { margin: 0 0 1.2em; background: transparent url(public/images/
 .wrap1
 {
 	float:left;
-	background:url(public/images/open-quote.gif) right bottom no-repeat;
+	background:url(/images/shadow.gif) right bottom no-repeat;
 }
 .wrap2
 {
-	background:url(public/images/open-quote.gif) left bottom no-repeat;
+	background:url(/images/corner_bl.gif) left bottom no-repeat;
 }
 .wrap3
 {
 	padding:0 8px 8px 0;
-	background:url(public/images/corner_tr.gif) right top no-repeat;
+	background:url(/images/corner_tr.gif) right top no-repeat;
 }
 .wrap3 img
 {
@@ -253,9 +253,9 @@ blockquote.quote { margin: 0 0 1.2em; background: transparent url(public/images/
 	border:1px solid #ccc;
 	border-color:#efefef #ccc #ccc #efefef;
 }
-.wrap1 {background:url(public/images/shadow.gif) right bottom no-repeat;}
-.wrap2 {background:url(public/images/shadow.gif) -1px 100% no-repeat;}
-.wrap3 {padding:0 6px 6px 0; background:url(public/images/shadow.gif) 100% -1px no-repeat;}
+.wrap1 {background:url(/images/shadow.gif) right bottom no-repeat;}
+.wrap2 {background:url(/images/corner_bl.gif) -1px 100% no-repeat;}
+.wrap3 {padding:0 6px 6px 0; background:url(/images/corner_tr.gif) 100% -1px no-repeat;}
 
 
 /*

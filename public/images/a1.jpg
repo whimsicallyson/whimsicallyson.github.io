@@ -4,7 +4,7 @@
 <html lang="en">
 
     <head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
-<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app22.us.archive.org';v.server_ms=1283;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/static/js/wbhack.js?v=1531952154.0" charset="utf-8"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app23.us.archive.org';v.server_ms=408;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/static/js/wbhack.js?v=1531952154.0" charset="utf-8"></script>
 
 <script type="text/javascript">
 __wbhack.init('https://web.archive.org/web');
@@ -336,7 +336,7 @@ __wbhack.init('https://web.archive.org/web');
 </html>
 <!--
      FILE ARCHIVED ON 22:18:19 Apr 23, 2011 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 17:51:32 Jul 26, 2018.
+     INTERNET ARCHIVE ON 18:01:47 Jul 26, 2018.
      JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
 
      ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
@@ -344,14 +344,14 @@ __wbhack.init('https://web.archive.org/web');
 -->
 <!--
 playback timings (ms):
-  LoadShardBlock: 257.651 (3)
-  esindex: 0.02
-  captures_list: 341.205
-  CDXLines.iter: 21.617 (3)
-  PetaboxLoader3.datanode: 165.988 (4)
-  exclusion.robots: 0.305
-  exclusion.robots.policy: 0.287
-  RedisCDXSource: 1.173
-  PetaboxLoader3.resolve: 947.865 (2)
-  load_resource: 909.371
+  LoadShardBlock: 76.131 (3)
+  esindex: 0.011
+  captures_list: 138.689
+  CDXLines.iter: 17.011 (3)
+  PetaboxLoader3.datanode: 71.036 (4)
+  exclusion.robots: 0.277
+  exclusion.robots.policy: 0.257
+  RedisCDXSource: 1.731
+  PetaboxLoader3.resolve: 142.402
+  load_resource: 241.721
 -->

@@ -31,7 +31,6 @@ app.get('/', function(request, response) {
   
   var promiseArray = [];
   var dest = './public/images';
-  var newHTML = '';
   var newCSS = '';
 
   fs.readFile('./example.html', function(err, data) {
@@ -43,8 +42,8 @@ app.get('/', function(request, response) {
     if (htmlBrokenURLs !== null) {
       for (var i = 0; i < htmlBrokenURLs.length; i++) {
         var justURL = htmlBrokenURLs[i].slice(5,-1); // slice removes src=" and "
-        // get filename = (example.png) - split '/' last token, add /im
-        // indexHTML = indexHTML.replace(justURL, filename);
+        var filename = '/images/' + justURL.split('/').pop();
+        indexHTML = indexHTML.replace(justURL, filename);
 
         promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
         .then(({filename, image}) => {
@@ -55,34 +54,42 @@ app.get('/', function(request, response) {
       // when all the promises in that for/each are done
       Promise.all( promiseArray )
         .then( () => {
-          newHTML = indexHTML;
-          console.log('promise all complete', promiseArray, newHTML);
+          var newHTML = indexHTML;
+          console.log('promise all complete', promiseArray);
           fs.writeFile('./views/index.html', newHTML, (err) => {
             console.log('html file written. error? ', err); 
           }); 
-      //  fs.writeFile('./public/style.css', newCSS);
-
     });
     }
   });
 
-/* 
-  fs.readFile('./public/style.css', function(err, data) {
-    data = data.toString();
-    var cssBrokenURLs = data.match(new RegExp(/url\(\/web.*?\)/, 'ig')) 
+
+  fs.readFile('./example.css', function(err, data) {
+    var indexCSS = data.toString();
+    var cssBrokenURLs = indexCSS.match(new RegExp(/url\(\/web.*?\)/, 'ig')) 
+    
     if (cssBrokenURLs !== null) {
       for (var i = 0; i < cssBrokenURLs.length; i++) {
         var justURL = cssBrokenURLs[i].slice(4,-1); // slice removes url( and )
+        var filename = '/images/' + justURL.split('/').pop();
+        indexCSS = indexCSS.replace(justURL, filename);
+        
         promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
         .then(({filename, image}) => {
-          data = data.replace(justURL, filename);
-          // fs.writeFile('./public/style.css', data);
+          console.log('downloaded: ', filename);
         }))
       }
-      newCSS = data;
+      Promise.all( promiseArray )
+        .then( () => {
+          var newCSS = indexCSS;
+          console.log('promise all complete', promiseArray);
+          fs.writeFile('./public/style.css', newCSS, (err) => {
+            console.log('css file written. error? ', err); 
+          }); 
+    });
     }
   });
-*/ 
+
 
  
 
