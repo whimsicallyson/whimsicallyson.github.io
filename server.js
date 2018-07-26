@@ -35,7 +35,7 @@ app.get('/', function(request, response) {
   fs.readFile('./views/index.html', function(err, data) {
     var indexHTML = data.toString();
     var htmlBrokenURLs = indexHTML.match(new RegExp(/src="\/web.*?"/, 'ig'));
-    
+    // if there are inline styles in the HTML file, we're not scraping them!
     console.log(htmlBrokenURLs);
     
     if (htmlBrokenURLs !== null) {
