@@ -31,7 +31,6 @@ app.get('/', function(request, response) {
   
   var promiseArray = [];
   var dest = './public/images';
-  var newCSS = '';
 
   fs.readFile('./views/index.html', function(err, data) {
     var indexHTML = data.toString();
