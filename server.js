@@ -35,22 +35,35 @@ app.get('/', function(request, response) {
   var newCSS = '';
 
   fs.readFile('./example.html', function(err, data) {
-    data = data.toString();
-    var htmlBrokenURLs = data.match(new RegExp(/src="\/web.*?"/, 'ig'))
+    var originalHTML = data;
+    originalHTML = data.toString();
+    var htmlBrokenURLs = originalHTML.match(new RegExp(/src="\/web.*?"/, 'ig'))
     console.log(htmlBrokenURLs);
     if (htmlBrokenURLs !== null) {
       for (var i = 0; i < htmlBrokenURLs.length; i++) {
         var justURL = htmlBrokenURLs[i].slice(5,-1); // slice removes src=" and "
         promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
         .then(({filename, image}) => {
-          data = data.replace(justURL, filename);
+          originalHTML = originalHTML.replace(justURL, (match) => {
+            console.log('match', match);
+            return filename;
+          });
           // fs.writeFile('./views/index.html', data); // doing this doesn't seem to actually hit every url
         }))
       }
       newHTML = data;
+       // when all the promises in that for/each are done
+      Promise.all( promiseArray )
+        .then( () => {
+          console.log('promise all complete', promiseArray);
+       // fs.writeFile('./views/index.html', newHTML); doing this gives me empty files
+      //  fs.writeFile('./public/style.css', newCSS);
+
+    });
     }
   });
 
+/* 
   fs.readFile('./public/style.css', function(err, data) {
     data = data.toString();
     var cssBrokenURLs = data.match(new RegExp(/url\(\/web.*?\)/, 'ig')) 
@@ -66,14 +79,9 @@ app.get('/', function(request, response) {
       newCSS = data;
     }
   });
+*/ 
 
-  // when all the promises in that for/each are done
-  Promise.all( promiseArray )
-    .then( () => {
-   // fs.writeFile('./views/index.html', newHTML); doing this gives me empty files
-  //  fs.writeFile('./public/style.css', newCSS);
-
-    });
+ 
 
 
 // listen for requests :)
