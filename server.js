@@ -54,7 +54,7 @@ app.get('/', function(request, response) {
       });
     }
   });
- 
+
 
   fs.readFile('./public/style.css', function(err, data) {
     var indexCSS = data.toString();
