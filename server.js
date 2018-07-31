@@ -41,7 +41,7 @@ app.get('/', function(request, response) {
         var justURL = htmlBrokenURLs[i].slice(5,-1); // slice removes src=" and "
         var filename = '/images/' + justURL.split('/').pop();
         indexHTML = indexHTML.replace(justURL, filename);
-        promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest}))
+        promiseArray.push(imageDownloader.image({ url: 'http://web.archive.org'+justURL, dest})) //gareth's remix didn't like this being https?
       }
 
       // when all the promises in that for/each are done
@@ -65,7 +65,7 @@ app.get('/', function(request, response) {
         var justURL = cssBrokenURLs[i].slice(4,-1); // slice removes url( and )
         var filename = '/images/' + justURL.split('/').pop();
         indexCSS = indexCSS.replace(justURL, filename);
-        promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest}))
+        promiseArray.push(imageDownloader.image({ url: 'http://web.archive.org'+justURL, dest})) //gareth's remix didn't like this being https?
       }
       Promise.all( promiseArray )
         .then( () => {
