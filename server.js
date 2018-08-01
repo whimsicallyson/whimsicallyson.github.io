@@ -29,53 +29,53 @@ app.get('/', function(request, response) {
 // 3. for each image link, download
 
   
-  var promiseArray = [];
-  var dest = './public/images';
+var promiseArray = [];
+var dest = './public/images';
 
-  fs.readFile('./views/index.html', function(err, data) {
-    var indexHTML = data.toString();
-    var htmlBrokenURLs = indexHTML.match(new RegExp(/src="\/web.*?"/, 'ig'));
-    
-    if (htmlBrokenURLs !== null) {
-      for (var i = 0; i < htmlBrokenURLs.length; i++) {
-        var justURL = htmlBrokenURLs[i].slice(5,-1); // slice removes src=" and "
-        var filename = '/images/' + justURL.split('/').pop();
-        indexHTML = indexHTML.replace(justURL, filename);
-        promiseArray.push(imageDownloader.image({ url: 'http://web.archive.org'+justURL, dest})) //gareth's remix didn't like this being https?
-      }
+fs.readFile('./views/index.html', function(err, data) {
+  var indexHTML = data.toString();
+  var htmlBrokenURLs = indexHTML.match(new RegExp(/src="\/web.*?"/, 'ig'));
 
-      // when all the promises in that for/each are done
-      Promise.all( promiseArray )
-        .then( () => {
-          var newHTML = indexHTML;
-          fs.writeFile('./views/index.html', newHTML, (err) => {
-            console.log('html file written. error? ', err); 
-          }); 
-      });
+  if (htmlBrokenURLs !== null) {
+    for (var i = 0; i < htmlBrokenURLs.length; i++) {
+      var justURL = htmlBrokenURLs[i].slice(5,-1); // slice removes src=" and "
+      var filename = '/images/' + justURL.split('/').pop();
+      indexHTML = indexHTML.replace(justURL, filename);
+      promiseArray.push(imageDownloader.image({ url: 'http://web.archive.org'+justURL, dest}))
     }
-  });
+
+    // when all the promises in that for/each are done
+    Promise.all( promiseArray )
+      .then( () => {
+        var newHTML = indexHTML;
+        fs.writeFile('./views/index.html', newHTML, (err) => {
+          console.log('html file written. error? ', err); 
+        }); 
+    });
+  }
+});
 
 
-  fs.readFile('./public/style.css', function(err, data) {
-    var indexCSS = data.toString();
-    var cssBrokenURLs = indexCSS.match(new RegExp(/url\(\/web.*?\)/, 'ig')) 
-    
-    if (cssBrokenURLs !== null) {
-      for (var i = 0; i < cssBrokenURLs.length; i++) {
-        var justURL = cssBrokenURLs[i].slice(4,-1); // slice removes url( and )
-        var filename = '/images/' + justURL.split('/').pop();
-        indexCSS = indexCSS.replace(justURL, filename);
-        promiseArray.push(imageDownloader.image({ url: 'http://web.archive.org'+justURL, dest})) //gareth's remix didn't like this being https?
-      }
-      Promise.all( promiseArray )
-        .then( () => {
-          var newCSS = indexCSS;
-          fs.writeFile('./public/style.css', newCSS, (err) => {
-            console.log('css file written. error? ', err); 
-          }); 
-      });
+fs.readFile('./public/style.css', function(err, data) {
+  var indexCSS = data.toString();
+  var cssBrokenURLs = indexCSS.match(new RegExp(/url\(\/web.*?\)/, 'ig')) 
+
+  if (cssBrokenURLs !== null) {
+    for (var i = 0; i < cssBrokenURLs.length; i++) {
+      var justURL = cssBrokenURLs[i].slice(4,-1); // slice removes url( and )
+      var filename = '/images/' + justURL.split('/').pop();
+      indexCSS = indexCSS.replace(justURL, filename);
+      promiseArray.push(imageDownloader.image({ url: 'http://web.archive.org'+justURL, dest}))
     }
-  });
+    Promise.all( promiseArray )
+      .then( () => {
+        var newCSS = indexCSS;
+        fs.writeFile('./public/style.css', newCSS, (err) => {
+          console.log('css file written. error? ', err); 
+        }); 
+    });
+  }
+});
 
 
 // listen for requests :)
