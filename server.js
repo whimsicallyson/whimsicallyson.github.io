@@ -41,7 +41,7 @@ fs.readFile('./views/index.html', function(err, data) {
       var justURL = htmlBrokenURLs[i].slice(5,-1); // slice removes src=" and "
       var filename = '/images/' + justURL.split('/').pop();
       indexHTML = indexHTML.replace(justURL, filename);
-      promiseArray.push(imageDownloader.image({ url: 'http://web.archive.org'+justURL, dest}))
+      promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest}))
     }
 
     // when all the promises in that for/each are done
@@ -65,7 +65,7 @@ fs.readFile('./public/style.css', function(err, data) {
       var justURL = cssBrokenURLs[i].slice(4,-1); // slice removes url( and )
       var filename = '/images/' + justURL.split('/').pop();
       indexCSS = indexCSS.replace(justURL, filename);
-      promiseArray.push(imageDownloader.image({ url: 'http://web.archive.org'+justURL, dest}))
+      promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest}))
     }
     Promise.all( promiseArray )
       .then( () => {
