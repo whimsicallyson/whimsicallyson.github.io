@@ -41,7 +41,10 @@ fs.readFile('./views/index.html', function(err, data) {
       var justURL = htmlBrokenURLs[i].slice(5,-1); // slice removes src=" and "
       var filename = '/images/' + justURL.split('/').pop();
       indexHTML = indexHTML.replace(justURL, filename);
-      promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest}))
+      promiseArray.push(
+        imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
+          .catch((err) => { console.log(justURL, 'imagedownload failed', err); })
+      )
     }
 
     // when all the promises in that for/each are done
@@ -51,7 +54,11 @@ fs.readFile('./views/index.html', function(err, data) {
         fs.writeFile('./views/index.html', newHTML, (err) => {
           console.log('html file written. error? ', err); 
         }); 
-    });
+      })
+      .catch((err) => {
+        console.error("HTML image error", err);
+        console.log(promiseArray);
+      });
   }
 });
 
@@ -63,9 +70,12 @@ fs.readFile('./public/style.css', function(err, data) {
   if (cssBrokenURLs !== null) {
     for (var i = 0; i < cssBrokenURLs.length; i++) {
       var justURL = cssBrokenURLs[i].slice(4,-1); // slice removes url( and )
+      console.log(justURL);
       var filename = '/images/' + justURL.split('/').pop();
       indexCSS = indexCSS.replace(justURL, filename);
-      promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest}))
+      promiseArray.push(imageDownloader.image({ url: 'http://web.archive.org'+justURL, dest})
+        .catch((err) => { console.log(justURL, 'imagedownload failed', err); })    
+      )
     }
     Promise.all( promiseArray )
       .then( () => {
@@ -73,7 +83,11 @@ fs.readFile('./public/style.css', function(err, data) {
         fs.writeFile('./public/style.css', newCSS, (err) => {
           console.log('css file written. error? ', err); 
         }); 
-    });
+      })
+      .catch((err) => {
+        console.error("CSS image error", err);
+        console.log(promiseArray);
+      });
   }
 });
 
