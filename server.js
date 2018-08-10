@@ -73,7 +73,7 @@ fs.readFile('./public/style.css', function(err, data) {
       console.log(justURL);
       var filename = '/images/' + justURL.split('/').pop();
       indexCSS = indexCSS.replace(justURL, filename);
-      promiseArray.push(imageDownloader.image({ url: 'http://web.archive.org'+justURL, dest})
+      promiseArray.push(imageDownloader.image({ url: 'https://web.archive.org'+justURL, dest})
         .catch((err) => { console.log(justURL, 'imagedownload failed', err); })    
       )
     }
