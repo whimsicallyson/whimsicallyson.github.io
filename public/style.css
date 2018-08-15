@@ -25,7 +25,7 @@ h1 {
 }
 
 @-webkit-keyframes script {
-	0% {color: white;}
+	0% {color: cornsilk;}
 	10% {color: paleturquoise;}
 	20% {color: papayawhip;}
 	30% {color: lightpink;}
@@ -38,7 +38,7 @@ h1 {
 	100% {color: cornsilk;}
 }
 @keyframes script {
-	0% {color: white;}
+	0% {color: cornsilk;}
 	10% {color: paleturquoise;}
 	20% {color: papayawhip;}
 	30% {color: lightpink;}
@@ -101,6 +101,6 @@ h1 {
 .fa:hover {
 	transition:all 0.3s ease;
 	-webkit-transform: scale(1.3);
-    -ms-transform: scale(1.3);
-    transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
 }
