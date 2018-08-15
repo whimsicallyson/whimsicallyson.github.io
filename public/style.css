@@ -28,27 +28,27 @@ h1 {
 	0% {color: white;}
 	10% {color: paleturquoise;}
 	20% {color: papayawhip;}
-	30% {color: #008080;}
-	40% {color: #00FF00;}
-	50% {color: #FFFFFF;}
-	60% {color: #FFFF00;}
-	70% {color: #FF0000;}
-	80% {color: #800080;}
-	90% {color: #2F4F4F;}
-	100% {color: #000000;}
+	30% {color: lightpink;}
+	40% {color: palegreen;}
+	50% {color: antiquewhite;}
+	60% {color: plum;}
+	70% {color: lightskyblue;}
+	80% {color: lemonchiffon;}
+	90% {color: peachpuff;}
+	100% {color: cornsilk;}
 }
 @keyframes script {
 	0% {color: white;}
 	10% {color: paleturquoise;}
 	20% {color: papayawhip;}
-	30% {color: #008080;}
-	40% {color: #00FF00;}
-	50% {color: #FFFFFF;}
-	60% {color: #FFFF00;}
-	70% {color: #FF0000;}
-	80% {color: #800080;}
-	90% {color: #2F4F4F;}
-	100% {color: #000000;}
+	30% {color: lightpink;}
+	40% {color: palegreen;}
+	50% {color: antiquewhite;}
+	60% {color: plum;}
+	70% {color: lightskyblue;}
+	80% {color: lemonchiffon;}
+	90% {color: peachpuff;}
+	100% {color: cornsilk;}
 }
 .script:hover {
 	-webkit-animation-name: script;
