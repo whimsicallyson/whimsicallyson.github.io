@@ -18,11 +18,11 @@ body {
 	height: 98vh;
 }
 h1 {
-	font-size: 256px;
+	font-size: 20em;
 	line-height: 0px;
 }
 .script {
-	font-family: 'Lobster', cursive;
+	font-family: 'Lily Script One', cursive;
 }
 
 @-webkit-keyframes script {
