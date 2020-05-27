@@ -1,10 +1,8 @@
-/* START website importer CSS code */
-
 body {
 	font-family: 'Lora', serif; 
 	display: flex;
 	flex-direction: column;
-	background: #820532;
+	background: #55296f;
 	color: #eee;
 	margin: 0;
 	border: 0;
@@ -18,8 +16,9 @@ body {
 	height: 98vh;
 }
 h1 {
-	font-size: 20em;
+	font-size: 25vw;
 	line-height: 0px;
+  max-width: 100vw;
 }
 .script {
 	font-family: 'Lily Script One', cursive;
