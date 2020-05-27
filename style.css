@@ -13,7 +13,8 @@ body {
 }
 .main {
 	padding: 2em;
-	height: 98vh;
+	height: 95vh;
+  overflow: scroll;
 }
 h1 {
 	font-size: 25vw;
@@ -66,6 +67,7 @@ h1 {
 	display: flex;
 	justify-content: space-around;
 	padding: 10px 0;
+  height: 5vh;
 }
 .fa-twitter {
 	color: #00aced;
