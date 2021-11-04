@@ -14,7 +14,7 @@
 .main {
 	padding: 2em;
 	height: 95vh;
-  overflow: scroll;
+  overflow: auto;
 }
 h1.script {
 	font-size: 25vw;
